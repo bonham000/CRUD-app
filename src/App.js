@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import GamesPage from './components/GamesPage';
-import GamesForm from './components/GamesForm';
+import GameFormPage from './components/GameFormPage';
 
 export default class App extends Component {
   render() {
@@ -15,7 +15,7 @@ export default class App extends Component {
         </div>
 
         <Route exact={true} path="/games" component={GamesPage} />
-        <Route path="/games/new" component={GamesForm} />
+        <Route exact={true} path="/games/:_id" component={GameFormPage} />
         
       </div>
     );
