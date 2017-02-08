@@ -15,7 +15,7 @@ export default class App extends Component {
         </div>
 
         <Route exact={true} path="/games" component={GamesPage} />
-        <Route exact={true} path="/games/:_id" component={GameFormPage} />
+        <Route path="/games/:_id" component={GameFormPage} />
         
       </div>
     );

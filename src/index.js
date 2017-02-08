@@ -8,7 +8,7 @@ import rootReducer from './rootReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import App from './App';
-import './index.css';
+import './styles/index.css';
 
 const store = createStore(
 	rootReducer,
