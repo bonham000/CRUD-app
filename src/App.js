@@ -7,14 +7,13 @@ import './App.css';
 export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className="ui container">
+
+        <div className="ui three item menu">
+          <Link className="item" activeClassName="active" to="/">Home</Link>
+          <Link className="item" activeClassName="active" to="/games">Games</Link>
+          <Link className="item" activeClassName="active" to="/games/new">Add New Game</Link>
         </div>
-        <p className="App-intro">
-          <Link to="games">Games</Link>
-        </p>
 
         <Route path="/games" component={GamesPage} />
         
