@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { saveGame } from '../actions/actions';
 import classnames from 'classnames';
 
@@ -9,7 +10,8 @@ class GamesForm extends React.Component {
 		title: '',
 		cover: '',
 		errors: {},
-		loading: false
+		loading: false,
+		done: false
 	}
 
 	handleChange = (e) => {
@@ -41,7 +43,7 @@ class GamesForm extends React.Component {
 			const { title, cover } = this.state;
 			this.setState({ loading: true });
 			this.props.saveGame({ title, cover }).then(
-				() => {},
+				() => { this.setState({ done: true })},
 				(err) => err.response.json().then(({errors}) => this.setState({ errors, loading: false }))
 			)
 		}
@@ -49,10 +51,9 @@ class GamesForm extends React.Component {
 	}
 
 	render() {
-		return (
+		const form = (
 			<form className={classnames('ui', 'form', { loading: this.state.loading})} onSubmit={this.handleSubmit}>
 				<h1>Add New Game</h1>
-
 				{!!this.state.errors.global && <div className="ui negative message"><p>{this.state.errors.global}</p></div>}
 
 				<div className={classnames('field', { error: !!this.state.errors.title})}>
@@ -84,8 +85,12 @@ class GamesForm extends React.Component {
 				<div className="field">
 					<button className="ui primary button">Save</button>
 				</div>
-
 			</form>
+		);
+		return (
+			<div>
+				{this.state.done ? <Redirect to="/games" /> : form}
+			</div>
 		);
 	}
 };
